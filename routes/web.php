@@ -8,6 +8,13 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PhotoController;
 
+Route::get('/greeting', [WelcomeController::class,
+'greeting']);
+
+// Route::get('/greeting', function () {
+//     return view('blog.hello', ['name' => 'Dane']);
+//     });
+
 Route::resource('photos', PhotoController::class);
 
 Route::resource('photos', PhotoController::class)->only([
