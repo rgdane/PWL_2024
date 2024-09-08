@@ -7,9 +7,22 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\POSController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 
-Route::get('/greeting', [WelcomeController::class,
-'greeting']);
+Route::get('/greeting', [WelcomeController::class,'greeting']);
+
+Route::get('/', [HomeController::class,'index']);
+
+Route::get('/user/{id}/name/{name}', [UserController::class,'user']);
+
+Route::get('/category/food-beverage', [ProductController::class,'foodBeverage']);
+Route::get('/category/beauty-health', [ProductController::class,'beautyHealth']);
+Route::get('/category/home-care', [ProductController::class,'homeCare']);
+Route::get('/category/baby-kid', [ProductController::class,'babyKid']);
+
+Route::get('/transaction', [POSController::class,'transaction']);
 
 // Route::get('/greeting', function () {
 //     return view('blog.hello', ['name' => 'Dane']);
@@ -31,8 +44,6 @@ Route::get('/hello', [WelcomeController::class, 'hello']);
 Route::get('/world', function () {
     return 'World';
 });
-
-Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/about', [AboutController::class, 'about']);
 
