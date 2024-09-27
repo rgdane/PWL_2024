@@ -49,7 +49,7 @@ class UserController extends Controller
     public function hapus($id){
         $user = UserModel::find($id);
         $user->delete();
-
+        
         return redirect('/user');
     }
 }
