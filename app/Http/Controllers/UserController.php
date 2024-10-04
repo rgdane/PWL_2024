@@ -113,7 +113,7 @@ class UserController extends Controller
             $btn .= '<button onclick="modalAction(\''.url('/user/' . $user->user_id .
             '/edit_ajax').'\')" class="btn btn-warning btn-sm">Edit</button> ';
             $btn .= '<button onclick="modalAction(\''.url('/user/' . $user->user_id .
-            '/delete_ajax').'\')" class="btn btn-danger btn-sm">Hapus</button> ';
+            '/confirm_ajax').'\')" class="btn btn-danger btn-sm">Hapus</button> ';
             return $btn;
             })
             ->rawColumns(['aksi']) // memberitahu bahwa kolom aksi adalah html
@@ -165,6 +165,33 @@ class UserController extends Controller
             }
         }
         return redirect('/user');
+    }
+
+    public function confirmAjax(string $id){
+        $user = UserModel::find($id);
+        
+        return view('user.confirm_ajax', ['user' => $user]);
+    }
+
+    public function deleteAjax(Request $request, $id)
+    {
+        // cek apakah request dari ajax
+        if ($request->ajax() || $request->wantsJson()) {
+            $user = UserModel::find($id);
+            if ($user) {
+                $user->delete();
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Data berhasil dihapus'
+                ]);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Data tidak ditemukan'
+                ]);
+            }
+            return redirect('/user');
+        }
     }
 
     //Menampilkan halaman form tambah user
