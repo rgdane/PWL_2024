@@ -21,7 +21,13 @@ Route::group(['prefix' => 'user'], function(){
 
     Route::get('/{id}', [UserController::class, 'show']); //detail user
     Route::get('/{id}/edit', [UserController::class, 'edit']); //form edit
+    Route::get('/{id}', [UserController::class, 'show']); //detail user
+    Route::get('/{id}/edit', [UserController::class, 'edit']); //form edit
     Route::put('/{id}', [UserController::class, 'update']); // simpan perubahan data
+    
+    Route::get('/{id}/edit_ajax', [UserController::class, 'editAjax']); //form edit Ajax
+    Route::put('/{id}/update_ajax', [UserController::class, 'updateAjax']); // simpan perubahan data Ajax
+
     Route::delete('/{id}', [UserController::class, 'destroy']); //hapus data user
 });
 
