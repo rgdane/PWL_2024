@@ -14,6 +14,8 @@ Route::pattern ('id','[0-9]+'); // artinya ketika ada parameter {id}, maka harus
 Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'postlogin']);
 Route::get('logout', [AuthController::class, 'logout'])->middleware('auth');
+Route::get('create', [UserController::class, 'create']); //form tambah user
+Route::post('store', [UserController::class, 'store']); //data user baru
 
 Route::middleware( ['auth'])->group(function(){
         
@@ -23,8 +25,8 @@ Route::middleware( ['auth'])->group(function(){
         Route::group(['prefix' => 'user'], function(){
             Route::get('/', [UserController::class, 'index']); //halaman awal
             Route::post('/list', [UserController::class, 'list']);  //data user (json)
-            Route::get('/create', [UserController::class, 'create']); //form tambah user
-            Route::post('/', [UserController::class, 'store']); //data user baru
+            // Route::get('/create', [UserController::class, 'create']); //form tambah user
+            // Route::post('/', [UserController::class, 'store']); //data user baru
             
             Route::get('/create_ajax', [UserController::class, 'createAjax']); //form tambah user Ajax
             Route::post('/ajax', [UserController::class, 'storeAjax']); //data user baru Ajax

@@ -57,6 +57,8 @@
 							<!-- /.col -->
 						</div>
 					</form>
+					<br>
+					<p class="login-box-msg">Don't have any account? <a href="create">Register Now</a></p>
 				</div>
 				<!-- /.card-body -->
 			</div>
