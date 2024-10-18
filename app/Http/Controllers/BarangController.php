@@ -6,6 +6,7 @@ use App\Models\KategoriModel;
 use Illuminate\Http\Request;
 use App\Models\BarangModel;
 use Illuminate\Support\Facades\Validator;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 use Yajra\DataTables\DataTables;
 
 class BarangController extends Controller
@@ -217,18 +218,18 @@ class BarangController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
+            'kategori_id' => 'required|integer',
             'barang_kode' => 'required|string|min:3|unique:m_barang,barang_kode,' . $id . ',barang_id',
             'barang_nama' => 'required|string|max:100',
             'harga_beli' => 'required|integer',
-            'harga_jual' => 'required|integer',
-            'kategori_id' => 'required|integer'
+            'harga_jual' => 'required|integer'
         ]);
         BarangModel::find($id)->update([
+            'kategori_id' => $request->kategori_id,
             'barang_kode' => $request->barang_kode,
             'barang_nama' => $request->barang_nama,
             'harga_beli' => $request -> harga_beli,
-            'harga_jual' => $request -> harga_jual,
-            'kategori_id' => $request->kategori_id
+            'harga_jual' => $request -> harga_jual
         ]);
         return redirect('/barang')->with('success' . "data barang berhasil diubah");
     }
@@ -247,4 +248,78 @@ class BarangController extends Controller
             return redirect('/barang')->with('error','Data barang gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini');
         }
     }
+
+    public function import()
+    {
+    return view('barang.import');
+    }
+
+    public function import_ajax(Request $request)
+    {
+        if ($request->ajax() || $request->wantsJson()) {
+            // Validasi file harus xlsx dan maksimal 1MB
+            $rules = [
+                'file_barang' => ['required', 'mimes:xlsx', 'max:1024']
+            ];
+
+            $validator = Validator::make($request->all(), $rules);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Validasi Gagal',
+                    'msgField' => $validator->errors()
+                ]);
+            }
+
+            // Ambil file dari request
+            $file = $request->file('file_barang');
+
+            // Load reader file excel
+            $reader = IOFactory::createReader('Xlsx');
+            $reader->setReadDataOnly(true);
+
+            // Load file excel dan ambil sheet yang aktif
+            $spreadsheet = $reader->load($file->getRealPath());
+            $sheet = $spreadsheet->getActiveSheet();
+
+            // Ambil data excel
+            $data = $sheet->toArray(null, false, true, true);
+            $insert = [];
+
+            // Jika data lebih dari 1 baris
+            if (count($data) > 1) {
+                foreach ($data as $baris => $value) {
+                    // Baris pertama adalah header, maka lewati
+                    if ($baris > 1) {
+                        $insert[] = [
+                            'kategori_id' => $value['A'],
+                            'barang_kode' => $value['B'],
+                            'barang_nama' => $value['C'],
+                            'harga_beli' => $value['D'],
+                            'harga_jual' => $value['E'],
+                            'created_at' => now(),
+                        ];
+                    }
+                }
+
+                // Insert data ke database, jika data sudah ada, maka diabaikan
+                if (count($insert) > 0) {
+                    BarangModel::insertOrIgnore($insert);
+                }
+
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Data berhasil diimport'
+                ]);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Tidak ada data yang diimport'
+                ]);
+            }
+        }
+        return redirect('/barang');
+    }
+
 }
