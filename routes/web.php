@@ -42,6 +42,11 @@ Route::middleware( ['auth'])->group(function(){
             Route::delete('/{id}/delete_ajax', [UserController::class, 'deleteAjax']); //hapus data user Ajax
 
             Route::delete('/{id}', [UserController::class, 'destroy']); //hapus data user
+
+            Route::get('/import', [UserController::class, 'import']); //ajax form upload excel
+            Route::post('/import_ajax', [UserController::class, 'import_ajax']); //ajax import excel
+            Route::get('/export_excel', [UserController::class, 'export_excel']); //export excel
+            Route::get('/export_pdf', [UserController::class, 'export_pdf']); //export pdf
         });
     });
 
@@ -64,6 +69,11 @@ Route::middleware( ['auth'])->group(function(){
             Route::put('/{id}/update_ajax', [LevelController::class, 'updateAjax']); // simpan perubahan data
             Route::get('/{id}/delete_ajax', [LevelController::class, 'confirmAjax']);
             Route::delete('/{id}/delete_ajax', [LevelController::class, 'deleteAjax']);
+
+            Route::get('/import', [LevelController::class, 'import']); //ajax form upload excel
+            Route::post('/import_ajax', [LevelController::class, 'import_ajax']); //ajax import excel
+            Route::get('/export_excel', [LevelController::class, 'export_excel']); //export excel
+            Route::get('/export_pdf', [LevelController::class, 'export_pdf']); //export pdf
         });
     });
 
@@ -87,6 +97,11 @@ Route::middleware( ['auth'])->group(function(){
             Route::delete('/{id}/delete_ajax', [KategoriController::class, 'deleteAjax']);
 
             Route::delete('/{id}', [KategoriController::class, 'destroy']); //hapus data kategori
+            
+            Route::get('/import', [KategoriController::class, 'import']); //ajax form upload excel
+            Route::post('/import_ajax', [KategoriController::class, 'import_ajax']); //ajax import excel
+            Route::get('/export_excel', [KategoriController::class, 'export_excel']); //export excel
+            Route::get('/export_pdf', [KategoriController::class, 'export_pdf']); //export pdf
         });
     });
 
@@ -110,6 +125,11 @@ Route::middleware( ['auth'])->group(function(){
             Route::delete('/{id}/delete_ajax', [SupplierController::class, 'deleteAjax']);
 
             Route::delete('/{id}', [SupplierController::class, 'destroy']); //hapus data supplier
+
+            Route::get('/import', [SupplierController::class, 'import']); //ajax form upload excel
+            Route::post('/import_ajax', [SupplierController::class, 'import_ajax']); //ajax import excel
+            Route::get('/export_excel', [SupplierController::class, 'export_excel']); //export excel
+            Route::get('/export_pdf', [SupplierController::class, 'export_pdf']); //export pdf
         });
     });
 

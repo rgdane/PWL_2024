@@ -379,10 +379,10 @@ class BarangController extends Controller
         ->orderBy('barang_kode')
         ->with('kategori')
         ->get();
-    $pdf = Pdf::loadView('barang.export_pdf', ['barang' => $barang]);
-    $pdf->setPaper('a4', 'portrait'); //set ukuran kertas dan orientasi
-    $pdf->setOption("isRemoteEnabled", true); // set true jika ada gambar dari url
-    $pdf->render();
-    return $pdf->stream('Data Barang' .date ('Y-m-d H:i:s'). '.pdf');
+        $pdf = Pdf::loadView('barang.export_pdf', ['barang' => $barang]);
+        $pdf->setPaper('a4', 'portrait'); //set ukuran kertas dan orientasi
+        $pdf->setOption("isRemoteEnabled", true); // set true jika ada gambar dari url
+        $pdf->render();
+        return $pdf->stream('Data Barang' .date ('Y-m-d H:i:s'). '.pdf');
     }
 }
