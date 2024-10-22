@@ -321,21 +321,23 @@ class SupplierController extends Controller
         //load library excel
         $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet(); // ambil sheet yang aktif
-        $sheet->setCellValue('A1', 'Kode Supplier');
-        $sheet->setCellValue('B1', 'Nama Supplier');
-        $sheet->setCellValue('C1', 'Alamat Supplier');
-        $sheet->getStyle('A1:C1')->getFont()->setBold(true); //bold header
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'Kode Supplier');
+        $sheet->setCellValue('C1', 'Nama Supplier');
+        $sheet->setCellValue('D1', 'Alamat Supplier');
+        $sheet->getStyle('A1:D1')->getFont()->setBold(true); //bold header
         
         $no=1; //nomor data dimulai dari 1
         $baris = 2;
         foreach ($supplier as $key => $value){
-            $sheet->setCellValue('A' .$baris, $value->supplier_kode);
-            $sheet->setCellValue('B' .$baris, $value->supplier_nama);
-            $sheet->setCellValue('C' .$baris, $value->supplier_alamat);
+            $sheet->setCellValue('A' .$baris, $no);
+            $sheet->setCellValue('B' .$baris, $value->supplier_kode);
+            $sheet->setCellValue('C' .$baris, $value->supplier_nama);
+            $sheet->setCellValue('D' .$baris, $value->supplier_alamat);
             $baris++;
             $no++;
         }
-        foreach(range('A','C') as $columnID) {
+        foreach(range('A','D') as $columnID) {
             $sheet->getColumnDimension($columnID)->setAutoSize(true); //set auto size untuk kolom
         }
         
