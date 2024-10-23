@@ -34,4 +34,9 @@ class UserModel extends Authenticatable
     public function getRole(){
         return $this->level->level_kode;
     }
+
+    public function profile()
+    {
+        return $this->hasOne(ProfileModel::class);
+    }
 }

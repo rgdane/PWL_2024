@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
@@ -20,6 +21,8 @@ Route::post('store', [UserController::class, 'store']); //data user baru
 Route::middleware( ['auth'])->group(function(){
         
     Route::get('/', [WelcomeController::class,'index']);
+    Route::get('/profile', [ProfileController::class,'index']);
+    Route::put('/profile/{id}/updateProfile', [ProfileController::class,'updateProfile']);
 
     Route::middleware(['authorize:ADM,CEO'])->group(function(){
         Route::group(['prefix' => 'user'], function(){
