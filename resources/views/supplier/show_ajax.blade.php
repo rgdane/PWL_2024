@@ -28,16 +28,16 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Supplier Nama</label>
-                        <input value="{{ $supplier->supplier_nama }}" type="text" name="supplier_nama" id="supplier_nama"
-                            class="form-control" required>
-                        <small id="error-supplier_nama" class="error-text form-text text-danger"></small>
-                    </div>
-                    <div class="form-group">
                         <label>Supplier Kode</label>
                         <input value="{{ $supplier->supplier_kode }}" type="text" name="supplier_kode" id="name"
                             class="form-control" required>
                         <small id="error-supplier_kode" class="error-text form-text text-danger"></small>
+                    </div>
+                    <div class="form-group">
+                        <label>Supplier Nama</label>
+                        <input value="{{ $supplier->supplier_nama }}" type="text" name="supplier_nama" id="supplier_nama"
+                            class="form-control" required>
+                        <small id="error-supplier_nama" class="error-text form-text text-danger"></small>
                     </div>
                     <div class="form-group">
                         <label>Supplier Alamat</label>
@@ -84,7 +84,7 @@
                                     title: 'Berhasil',
                                     text: response.message
                                 });
-                                dataUser.ajax.reload();
+                                tableSupplier.ajax.reload(); // reload datatable
                             } else {
                                 $('.error-text').text('');
                                 $.each(response.msgField, function(prefix, val) {
