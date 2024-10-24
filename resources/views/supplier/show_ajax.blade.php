@@ -30,19 +30,19 @@
                     <div class="form-group">
                         <label>Supplier Kode</label>
                         <input value="{{ $supplier->supplier_kode }}" type="text" name="supplier_kode" id="name"
-                            class="form-control" required>
+                            class="form-control" disabled>
                         <small id="error-supplier_kode" class="error-text form-text text-danger"></small>
                     </div>
                     <div class="form-group">
                         <label>Supplier Nama</label>
                         <input value="{{ $supplier->supplier_nama }}" type="text" name="supplier_nama" id="supplier_nama"
-                            class="form-control" required>
+                            class="form-control" disabled>
                         <small id="error-supplier_nama" class="error-text form-text text-danger"></small>
                     </div>
                     <div class="form-group">
                         <label>Supplier Alamat</label>
                         <input value="{{ $supplier->supplier_alamat }}" type="text" name="supplier_alamat" id="name"
-                            class="form-control" required>
+                            class="form-control" disabled>
                         <small id="error-supplier_alamat" class="error-text form-text text-danger"></small>
                     </div>
                 </div>

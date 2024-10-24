@@ -30,13 +30,13 @@
                     <div class="form-group">
                         <label>Level Kode</label>
                         <input value="{{ $level->level_kode }}" type="text" name="level_kode" id="name"
-                            class="form-control" required>
+                            class="form-control" disabled>
                         <small id="error-level_kode" class="error-text form-text text-danger"></small>
                     </div>
                     <div class="form-group">
                         <label>Level Nama</label>
                         <input value="{{ $level->level_nama }}" type="text" name="level_nama" id="level_nama"
-                            class="form-control" required>
+                            class="form-control" disabled>
                         <small id="error-level_nama" class="error-text form-text text-danger"></small>
                     </div>
                 </div>
