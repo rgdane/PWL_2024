@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class UserModel extends Authenticatable
@@ -38,5 +39,9 @@ class UserModel extends Authenticatable
     public function profile()
     {
         return $this->hasOne(ProfileModel::class);
+    }
+
+    public function penjualan() : HasMany {
+        return $this->hasMany(PenjualanModel::class, 'penjualan_id', 'penjualan_id');
     }
 }
