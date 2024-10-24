@@ -38,6 +38,7 @@ Route::middleware( ['auth'])->group(function(){
             Route::get('/{id}/edit', [UserController::class, 'edit']); //form edit
             Route::put('/{id}', [UserController::class, 'update']); // simpan perubahan data
             
+            Route::get('/{id}/show_ajax', [UserController::class, 'showAjax']); //form detail Ajax
             Route::get('/{id}/edit_ajax', [UserController::class, 'editAjax']); //form edit Ajax
             Route::put('/{id}/update_ajax', [UserController::class, 'updateAjax']); // simpan perubahan data Ajax
             
