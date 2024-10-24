@@ -24,7 +24,7 @@ class BarangController extends Controller
     
         $activeMenu = 'barang'; //set menu yang sedang aktif
 
-        $kategori = KategoriModel::all(); //ambil data kategori unttuk filter kategori
+        $kategori = KategoriModel::all(); //ambil data kategori untuk filter kategori
     
         return view('barang.index',['breadcrumb'=>$breadcrumb, 'page' => $page, 'kategori' => $kategori,'activeMenu'=>$activeMenu]);
     }
@@ -88,11 +88,19 @@ class BarangController extends Controller
         }
         redirect('/');
     }
+
+    public function showAjax(string $id) {
+        $barang = BarangModel::find($id);
+        $kategori = KategoriModel::select('kategori_id', 'kategori_nama')->get();
+        return view('barang.show_ajax', ['barang' => $barang, 'kategori' => $kategori]);
+    }
+
     public function editAjax(string $id) {
         $barang = BarangModel::find($id);
         $kategori = KategoriModel::select('kategori_id', 'kategori_nama')->get();
         return view('barang.edit_ajax', ['barang' => $barang, 'kategori' => $kategori]);
     }
+
     public function updateAjax(Request $request, $id){
         // cek apakah request dari ajax 
         if ($request->ajax() || $request->wantsJson()) {
@@ -134,6 +142,7 @@ class BarangController extends Controller
         $barang = BarangModel::find($id);
         return view('barang.confirm_ajax', ['barang' => $barang]);
     }
+    
     public function deleteAjax(Request $request, string $id){
         if ($request->ajax() || $request->wantsJson()) {
             $barang = BarangModel::find($id);

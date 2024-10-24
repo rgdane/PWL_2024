@@ -16,8 +16,11 @@
 					<div class="form-group form-group-sm row text-sm mb-0">
 						<label for="filter_date" class="col-md-1 col-formlabel">Filter</label>
 						<div class="col-md-3">
-							<select name="filter_kategori" class="form-control formcontrol-sm filter_kategori">
-								<option value="">- Semua -</option> @foreach($kategori as $l) <option value="{{ $l->kategori_id }}">{{ $l->kategori_nama }}</option> @endforeach
+							<select name="kategori_id" class="form-control" id="kategori_id" required>
+								<option value="">- Semua -</option> 
+								@foreach($kategori as $l) 
+								<option value="{{ $l->kategori_id }}">{{ $l->kategori_nama }}</option> 
+								@endforeach
 							</select>
 							<small class="form-text text-muted">Kategori Barang</small>
 						</div>
@@ -56,7 +59,7 @@
 				"dataType": "json",
 				"type": "POST",
 				"data": function(d) {
-					d.filter_kategori = $('.filter_kategori').val();
+					d.kategori_id = $('#kategori_id').val();
 				}
 			},
 			columns: [{
@@ -109,13 +112,13 @@
 				searchable: false
 			}]
 		});
-		$('#table-barang_filter input').unbind().bind().on('keyup', function(e) {
-			if (e.keyCode == 13) { // enter key
-				tableBarang.search(this.value).draw();
-			}
-		});
-		$('.filter_kategori').change(function() {
-			tableBarang.draw();
+		// $('#table-barang_filter input').unbind().bind().on('keyup', function(e) {
+		// 	if (e.keyCode == 13) { // enter key
+		// 		tableBarang.search(this.value).draw();
+		// 	}
+		// });
+		$('#kategori_id').on('change', function(){
+			tableBarang.ajax.reload(); // reload datatable
 		});
 	});
 </script> @endpush

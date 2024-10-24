@@ -154,6 +154,7 @@ Route::middleware( ['auth'])->group(function(){
             Route::get('/{id}/edit', [BarangController::class, 'edit']); //form edit
             Route::put('/{id}', [BarangController::class, 'update']); // simpan perubahan data
             
+            Route::get('/{id}/show_ajax', [BarangController::class, 'showAjax']); //form detail
             Route::get('/{id}/edit_ajax', [BarangController::class, 'editAjax']); //form edit
             Route::put('/{id}/update_ajax', [BarangController::class, 'updateAjax']); // simpan perubahan data
             Route::get('/{id}/delete_ajax', [BarangController::class, 'confirmAjax']);

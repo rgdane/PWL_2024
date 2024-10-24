@@ -22,14 +22,14 @@
         <div id="modal-master" class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Data Barang</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Detail Data Barang</h5>
                     <button type="button" class="close" data-dismiss="modal" aria label="Close"><span
                             aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Kategori</label>
-                        <select name="kategori_id" id="kategori_id" class="form-control" required>
+                        <select name="kategori_id" id="kategori_id" class="form-control" disabled>
                             <option value="">- Pilih Kategori -</option>
                             @foreach ($kategori as $l)
                                 <option {{ $l->kategori_id == $barang->kategori_id ? 'selected' : '' }} value="{{ $l->kategori_id }}">
@@ -41,31 +41,31 @@
                     <div class="form-group">
                         <label>Barang Kode</label>
                         <input value="{{ $barang->barang_kode }}" type="text" name="barang_kode" id="name"
-                            class="form-control" required>
+                            class="form-control" disabled>
                         <small id="error-barang_kode" class="error-text form-text text-danger"></small>
                     </div>
                     <div class="form-group">
                         <label>Barang Nama</label>
                         <input value="{{ $barang->barang_nama }}" type="text" name="barang_nama" id="barang_nama"
-                            class="form-control" required>
+                            class="form-control" disabled>
                         <small id="error-barang_nama" class="error-text form-text text-danger"></small>
                     </div>
                     <div class="form-group">
                         <label>Harga Beli</label>
                         <input value="{{ $barang->harga_beli }}" type="text" name="harga_beli" id="harga_beli"
-                            class="form-control" required>
+                            class="form-control" disabled>
                         <small id="error-harga_beli" class="error-text form-text text-danger"></small>
                     </div>
                     <div class="form-group">
                         <label>Harga Jual</label>
                         <input value="{{ $barang->harga_jual }}" type="text" name="harga_jual" id="harga_jual"
-                            class="form-control" required>
+                            class="form-control" disabled>
                         <small id="error-harga_jual" class="error-text form-text text-danger"></small>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-warning">Batal</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-warning">Tutup</button>
+                    {{-- <button type="submit" class="btn btn-primary">Simpan</button> --}}
                 </div>
             </div>
         </div>
@@ -105,7 +105,7 @@
                                     title: 'Berhasil',
                                     text: response.message
                                 });
-                                tableBarang.ajax.reload(); // reload datatable
+                                dataUser.ajax.reload();
                             } else {
                                 $('.error-text').text('');
                                 $.each(response.msgField, function(prefix, val) {
