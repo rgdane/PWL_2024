@@ -85,10 +85,17 @@ class KategoriController extends Controller
         }
         redirect('/');
     }
+
+    public function showAjax(string $id){
+        $kategori = KategoriModel::find($id);
+        return view('kategori.show_ajax', ['kategori' => $kategori]);
+    }
+
     public function editAjax(string $id){
         $kategori = KategoriModel::find($id);
         return view('kategori.edit_ajax', ['kategori' => $kategori]);
     }
+
     public function updateAjax(Request $request, $id){
         // cek apakah request dari ajax
         if ($request->ajax() || $request->wantsJson()) {

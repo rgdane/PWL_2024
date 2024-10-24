@@ -41,8 +41,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-warning">Batal</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-warning">Tutup</button>
+                    {{-- <button type="submit" class="btn btn-primary">Simpan</button> --}}
                 </div>
             </div>
         </div>

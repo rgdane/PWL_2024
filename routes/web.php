@@ -95,6 +95,7 @@ Route::middleware( ['auth'])->group(function(){
             Route::get('/{id}/edit', [KategoriController::class, 'edit']); //form edit
             Route::put('/{id}', [KategoriController::class, 'update']); // simpan perubahan data
 
+            Route::get('/{id}/show_ajax', [KategoriController::class, 'showAjax']); //form detail
             Route::get('/{id}/edit_ajax', [KategoriController::class, 'editAjax']); //form edit
             Route::put('/{id}/update_ajax', [KategoriController::class, 'updateAjax']); // simpan perubahan data
             Route::get('/{id}/delete_ajax', [KategoriController::class, 'confirmAjax']);
