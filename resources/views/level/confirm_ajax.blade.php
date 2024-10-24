@@ -57,7 +57,7 @@
                                     title: 'Berhasil', 
                                     text: response.message 
                                 }); 
-                                dataLevel.ajax.reload(); 
+                                tableLevel.ajax.reload(); // reload datatable
                             }else{ 
                                 $('.error-text').text(''); 
                                 $.each(response.msgField, function(prefix, val) { 
@@ -69,7 +69,7 @@
                                     text: response.message 
                                 }); 
                             } 
-                        }             
+                        }
                     }); 
                     return false; 
                 }, 

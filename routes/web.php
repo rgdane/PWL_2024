@@ -68,6 +68,7 @@ Route::middleware( ['auth'])->group(function(){
     
             Route::get('/{id}', [LevelController::class, 'show']); //detail level
 
+            Route::get('/{id}/show_ajax', [LevelController::class, 'showAjax']); //form detail
             Route::get('/{id}/edit_ajax', [LevelController::class, 'editAjax']); //form edit
             Route::put('/{id}/update_ajax', [LevelController::class, 'updateAjax']); // simpan perubahan data
             Route::get('/{id}/delete_ajax', [LevelController::class, 'confirmAjax']);

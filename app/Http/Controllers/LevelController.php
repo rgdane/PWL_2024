@@ -84,10 +84,17 @@ class LevelController extends Controller
         }
         redirect('/');
     }
+
+        public function showAjax(string $id){
+            $level = LevelModel::find($id);
+            return view('level.show_ajax', ['level' => $level]);
+        }
+
         public function editAjax(string $id){
             $level = LevelModel::find($id);
             return view('level.edit_ajax', ['level' => $level]);
         }
+        
         Public function updateAjax(Request $request, $id){ 
             // cek apakah request dari ajax 
             // dd('sdgjasd');
