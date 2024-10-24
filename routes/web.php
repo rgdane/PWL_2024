@@ -122,6 +122,7 @@ Route::middleware( ['auth'])->group(function(){
             Route::get('/{id}/edit', [SupplierController::class, 'edit']); //form edit
             Route::put('/{id}', [SupplierController::class, 'update']); // simpan perubahan data
             
+            Route::get('/{id}/show_ajax', [SupplierController::class, 'showAjax']); //form edit
             Route::get('/{id}/edit_ajax', [SupplierController::class, 'editAjax']); //form edit
             Route::put('/{id}/update_ajax', [SupplierController::class, 'updateAjax']); // simpan perubahan data
             Route::get('/{id}/delete_ajax', [SupplierController::class, 'confirmAjax']);

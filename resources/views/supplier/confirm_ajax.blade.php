@@ -70,7 +70,7 @@
                                     title: 'Berhasil',
                                     text: response.message
                                 });
-                                dataUser.ajax.reload();
+                                tableSupplier.ajax.reload(); // reload datatable
                             } else {
                                 $('.error-text').text('');
                                 $.each(response.msgField, function(prefix, val) {

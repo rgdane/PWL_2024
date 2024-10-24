@@ -87,11 +87,19 @@ class SupplierController extends Controller
         }
         redirect('/');
     }
+
+    public function showAjax(string $id)
+    {
+        $supplier = SupplierModel::find($id);
+        return view('supplier.show_ajax', ['supplier' => $supplier]);
+    }
+
     public function editAjax(string $id)
     {
         $supplier = SupplierModel::find($id);
         return view('supplier.edit_ajax', ['supplier' => $supplier]);
     }
+
     public function updateAjax(Request $request, $id)
     {
         // cek apakah request dari ajax 
