@@ -25,11 +25,11 @@
 
                 <!-- Profile Image Field -->
                 <div class="form-group row">
-                  <label class="col-2 control-label col-form-label">Foto Profile</label>
-                  <div class="col-10">
-                      <input type="file" class="form-control-file" name="profile_foto_url">
-                  </div>
-              </div>
+                    <label class="col-2 control-label col-form-label">Foto Profile</label>
+                    <div class="col-10">
+                        <input type="file" class="form-control-file" name="profile_foto_url">
+                    </div>
+                </div>
 
                 <!-- Email Field -->
                 <div class="form-group row">
@@ -43,23 +43,43 @@
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-2 control-label col-form-label">Telepon</label>
-                  <div class="col-10">
-                      <input type="number" class="form-control" name="profile_telepon" value="{{ old('profile_telepon', $profile->profile_telepon) }}" required>
-                      @error('profile_telepon')
-                          <small class="form-text text-danger">{{ $message }}</small>
-                      @enderror
-                  </div>
+                    <label class="col-2 control-label col-form-label">Telepon</label>
+                    <div class="col-10">
+                        <input type="number" class="form-control" name="profile_telepon" value="{{ old('profile_telepon', $profile->profile_telepon) }}" required>
+                        @error('profile_telepon')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-2 control-label col-form-label">Alamat</label>
-                  <div class="col-10">
-                      <input type="profile_alamat" class="form-control" name="profile_alamat" value="{{ old('profile_alamat', $profile->profile_alamat) }}" required>
-                      @error('profile_alamat')
-                          <small class="form-text text-danger">{{ $message }}</small>
-                      @enderror
-                  </div>
+                    <label class="col-2 control-label col-form-label">Alamat</label>
+                    <div class="col-10">
+                        <input type="profile_alamat" class="form-control" name="profile_alamat" value="{{ old('profile_alamat', $profile->profile_alamat) }}" required>
+                        @error('profile_alamat')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label class="col-2 control-label col-form-label">Username</label>
+                    <div class="col-10">
+                        <input type="text" class="form-control" id="username" name="username" value="{{ old('username', $user->username) }}" required> @error('username') <small class="form-text text-danger">{{ $message }}</small> @enderror
+                        @error('profile_username')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-2 control-label col-form-label">Password</label>
+                    <div class="col-10">
+                        <input type="password" class="form-control" id="password" name="password"> @error('password') <small class="form-text text-danger">{{ $message }}</small> @else <small class="form-text text-muted">Abaikan (jangan diisi) jika tidak ingin mengganti password user.</small> @enderror
+                        @error('profile_username')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
                 </div>
 
                 <!-- Save Button -->
