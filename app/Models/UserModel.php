@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -23,9 +24,7 @@ class UserModel extends Authenticatable implements JWTSubject
 
     protected $table = 'm_user';
     protected $primaryKey = 'user_id';
-    protected $fillable = ['level_id', 'username', 'nama', 'password'];
-
-    protected $hidden = ['password'];
+    protected $fillable = ['level_id',  'username', 'nama', 'password','created_at','updated_at','image'];
 
     protected $casts = ['password' => 'hashed']; //casting password agar otomatis dihash
     
@@ -52,5 +51,12 @@ class UserModel extends Authenticatable implements JWTSubject
 
     public function penjualan() : HasMany {
         return $this->hasMany(PenjualanModel::class, 'penjualan_id', 'penjualan_id');
+    }
+
+    protected function image(): Attribute
+    {
+        return Attribute::make(
+            get: fn($image) => url('/storage/posts/' .$image),
+        );
     }
 }
