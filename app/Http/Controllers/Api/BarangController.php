@@ -26,7 +26,14 @@ class BarangController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
-        $barang = BarangModel::create($request->all());
+        $barang = BarangModel::create([
+            'barang_kode' => $request->barang_kode,
+            'barang_nama' => $request->barang_nama,
+            'harga_beli' => $request->harga_beli,
+            'harga_jual' => $request->harga_jual,
+            'kategori_id' => $request->kategori_id,
+            'image' => $request->image->hashName(),
+        ]);
         return response()->json($barang, 201);
     }
 
